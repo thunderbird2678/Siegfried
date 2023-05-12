@@ -96,9 +96,13 @@ const ImageGallery: React.FC = () => {
             {<img src={imageElement?.thumbnailUrl} alt="" />}
           </div>
         );
+        console.log(
+          `added image ${imageElement?.thumbnailUrl} to column ${
+            minHeightColumn + 1
+          } which now has height ${tempColumns[minHeightColumn].height}`
+        );
         if (index === sortedImages.length - 1) {
           setColumns(tempColumns);
-          console.log("tempColumns: ", tempColumns);
           setRenderLoading(false);
         }
       };

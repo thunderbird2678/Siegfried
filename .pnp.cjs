@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@google-cloud/storage", "npm:6.10.0"],\
+            ["@types/lodash", "npm:4.14.194"],\
             ["@types/react", "npm:18.2.2"],\
             ["@types/react-dom", "npm:18.2.3"],\
             ["@types/react-router-dom", "npm:5.3.3"],\
@@ -46,6 +47,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:7.32.2"],\
             ["firebase", "npm:9.21.0"],\
             ["localforage", "npm:1.10.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["match-sorter", "npm:6.3.1"],\
             ["postcss", "npm:8.4.23"],\
             ["prettier", "npm:2.8.8"],\
@@ -1851,6 +1853,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-json5-npm-0.0.29-f63a7916bd-e60b153664.zip/node_modules/@types/json5/",\
           "packageDependencies": [\
             ["@types/json5", "npm:0.0.29"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/lodash", [\
+        ["npm:4.14.194", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.194-f099c0742e-113f34831c.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.194"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4806,6 +4817,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lodash", [\
+        ["npm:4.17.21", {\
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
+          "packageDependencies": [\
+            ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lodash.camelcase", [\
         ["npm:4.3.0", {\
           "packageLocation": "./.yarn/cache/lodash.camelcase-npm-4.3.0-bf268e3bf0-cb9227612f.zip/node_modules/lodash.camelcase/",\
@@ -6142,6 +6162,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["siegfried", "workspace:."],\
             ["@google-cloud/storage", "npm:6.10.0"],\
+            ["@types/lodash", "npm:4.14.194"],\
             ["@types/react", "npm:18.2.2"],\
             ["@types/react-dom", "npm:18.2.3"],\
             ["@types/react-router-dom", "npm:5.3.3"],\
@@ -6159,6 +6180,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:7.32.2"],\
             ["firebase", "npm:9.21.0"],\
             ["localforage", "npm:1.10.0"],\
+            ["lodash", "npm:4.17.21"],\
             ["match-sorter", "npm:6.3.1"],\
             ["postcss", "npm:8.4.23"],\
             ["prettier", "npm:2.8.8"],\

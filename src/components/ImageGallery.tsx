@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { cloneDeep } from "lodash";
 import { useParams } from "react-router-dom";
 import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
 import { FIREBASE_APP } from "../firebase";
@@ -16,13 +17,15 @@ interface Column {
 const ImageGallery: React.FC = () => {
   const { bucket } = useParams();
   const [images, setImages] = useState<Map<string, Image>>(new Map());
-  const [loading, setLoading] = useState<boolean>(true);
 
-  const columns: Column[] = [
+  const [fetchLoading, setFetchLoading] = useState<boolean>(true);
+  const [renderLoading, setRenderLoading] = useState<boolean>(true);
+
+  const [columns, setColumns] = useState<Column[]>([
     { height: 0, images: [] },
     { height: 0, images: [] },
     { height: 0, images: [] },
-  ];
+  ]);
 
   const storageFull = getStorage(FIREBASE_APP, bucket);
   const storageThumbs = getStorage(FIREBASE_APP, `${bucket}_thumbs`);
@@ -58,7 +61,7 @@ const ImageGallery: React.FC = () => {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
+        setFetchLoading(false);
       }
     };
 
@@ -66,51 +69,52 @@ const ImageGallery: React.FC = () => {
   }, [bucket, storageFull, storageThumbs]);
 
   useEffect(() => {
-    if (!loading) {
-      renderImages();
+    if (!fetchLoading) {
+      generateColumns();
     }
-  }, [loading]);
+  }, [fetchLoading]);
 
-  const renderImages = () => {
+  const generateColumns = () => {
     const sortedImages = Array.from(images.keys()).sort();
-    sortedImages.forEach((key) => {
+    console.log("sortedImages: ", sortedImages);
+    const tempColumns = cloneDeep(columns);
+    sortedImages.forEach((key, index) => {
       const image = new Image();
       const imageElement = images.get(key);
       const src = imageElement?.thumbnailUrl || "";
       image.src = src;
       image.onload = () => {
-        const minHeightColumn = columns.findIndex((col) => {
+        const minHeightColumn = tempColumns.findIndex((col) => {
           return (
-            col.height === Math.min(...columns.map((column) => column.height))
+            col.height ===
+            Math.min(...tempColumns.map((column) => column.height))
           );
         });
-        columns[minHeightColumn].height =
-          columns[minHeightColumn].height + image.naturalHeight;
-        columns[minHeightColumn].images.push(
-          <div key={key} className="p-4 bg-white">
+        tempColumns[minHeightColumn].height += image.naturalHeight + 96;
+        tempColumns[minHeightColumn].images.push(
+          <div key={key} className="mb-4 p-4 bg-white max-w-[500px]">
             {<img src={imageElement?.thumbnailUrl} alt="" />}
           </div>
         );
+        if (index === sortedImages.length - 1) {
+          setColumns(tempColumns);
+          console.log("tempColumns: ", tempColumns);
+          setRenderLoading(false);
+        }
       };
     });
   };
 
-  return (
-    <div className=" bg-slate-200 ">
-      <div className="container mx-auto pt-20 grid gap-4 grid-cols-3">
-        {!loading &&
-          Array.from(images.keys())
-            .sort()
-            .map((key) => {
-              const image = images.get(key);
-              return (
-                <div key={key} className="p-4 bg-white">
-                  <img src={image?.thumbnailUrl} alt="" />
-                </div>
-              );
-            })}
-      </div>
+  const columnStyle = "flex mx-2 flex-col";
+
+  return !renderLoading ? (
+    <div className="flex py-8 justify-center">
+      <div className={columnStyle}>{columns[0].images}</div>
+      <div className={columnStyle}>{columns[1].images}</div>
+      <div className={columnStyle}>{columns[2].images}</div>
     </div>
+  ) : (
+    <></>
   );
 };
 

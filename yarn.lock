@@ -1163,6 +1163,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.194":
+  version: 4.14.194
+  resolution: "@types/lodash@npm:4.14.194"
+  checksum: 113f34831c461469d91feca2dde737f88487732898b4d25e9eb23b087bb193985f864d1e1e0f3b777edc5022e460443588b6000a3b2348c966f72d17eedc35ea
+  languageName: node
+  linkType: hard
+
 "@types/long@npm:^4.0.1":
   version: 4.0.2
   resolution: "@types/long@npm:4.0.2"
@@ -3593,6 +3600,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash@npm:4.17.21"
+  checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
+  languageName: node
+  linkType: hard
+
 "long@npm:^4.0.0":
   version: 4.0.0
   resolution: "long@npm:4.0.0"
@@ -4716,6 +4730,7 @@ __metadata:
   resolution: "siegfried@workspace:."
   dependencies:
     "@google-cloud/storage": ^6.10.0
+    "@types/lodash": ^4.14.194
     "@types/react": ^18.0.26
     "@types/react-dom": ^18.0.9
     "@types/react-router-dom": ^5.3.3
@@ -4733,6 +4748,7 @@ __metadata:
     eslint-plugin-react: ^7.31.11
     firebase: ^9.21.0
     localforage: ^1.10.0
+    lodash: ^4.17.21
     match-sorter: ^6.3.1
     postcss: ^8.4.20
     prettier: ^2.5.1

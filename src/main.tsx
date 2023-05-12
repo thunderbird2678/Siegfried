@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import Test1 from "./components/test1";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -11,8 +10,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/test1",
-    element: <Test1 />,
+    path: "/:bucket",
+    element: <App />,
   },
 ]);
 

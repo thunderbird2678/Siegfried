@@ -76,37 +76,36 @@ const ImageGallery: React.FC = () => {
 
   const generateColumns = () => {
     const sortedImages = Array.from(images.keys()).sort();
-    console.log("sortedImages: ", sortedImages);
     const tempColumns = cloneDeep(columns);
-    sortedImages.forEach((key, index) => {
-      const image = new Image();
-      const imageElement = images.get(key);
-      const src = imageElement?.thumbnailUrl || "";
-      image.src = src;
-      image.onload = () => {
-        const minHeightColumn = tempColumns.findIndex((col) => {
-          return (
-            col.height ===
-            Math.min(...tempColumns.map((column) => column.height))
+    Promise.all(sortedImages.map((key) => 
+    {
+      return new Promise((resolve) => 
+      {
+        const image = new Image();
+        const imageElement = images.get(key);
+        const src = imageElement?.thumbnailUrl || "";
+        image.src = src;
+        image.onload = () => {
+          const minHeightColumn = tempColumns.findIndex((col) => {
+            return (
+              col.height ===
+              Math.min(...tempColumns.map((column) => column.height))
+            );
+          });
+          tempColumns[minHeightColumn].height += image.naturalHeight + 96;
+          tempColumns[minHeightColumn].images.push(
+            <div key={key} className="mb-4 p-4 bg-white max-w-[500px]">
+              {<img src={imageElement?.thumbnailUrl} alt="" />}
+            </div>
           );
-        });
-        tempColumns[minHeightColumn].height += image.naturalHeight + 96;
-        tempColumns[minHeightColumn].images.push(
-          <div key={key} className="mb-4 p-4 bg-white max-w-[500px]">
-            {<img src={imageElement?.thumbnailUrl} alt="" />}
-          </div>
-        );
-        console.log(
-          `added image ${imageElement?.thumbnailUrl} to column ${
-            minHeightColumn + 1
-          } which now has height ${tempColumns[minHeightColumn].height}`
-        );
-        if (index === sortedImages.length - 1) {
-          setColumns(tempColumns);
-          setRenderLoading(false);
-        }
-      };
-    });
+          resolve(image.naturalHeight);
+        };
+      });
+    })).then(()=>
+    {
+      setColumns(tempColumns);
+      setRenderLoading(false);
+    })
   };
 
   const columnStyle = "flex mx-2 flex-col";

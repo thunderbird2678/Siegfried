@@ -6,7 +6,6 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBvH7MSJrDwWLiDAQPSp_T0NX3Q9i1Guic",
   authDomain: "photos-thunderbird-site.firebaseapp.com",
   projectId: "photos-thunderbird-site",
   storageBucket: "photos-thunderbird-site.appspot.com",

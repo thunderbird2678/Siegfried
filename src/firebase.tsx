@@ -6,13 +6,13 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyBvH7MSJrDwWLiDAQPSp_T0NX3Q9i1Guic",
-  authDomain: "photos-thunderbird-site.firebaseapp.com",
-  projectId: "photos-thunderbird-site",
-  storageBucket: "photos-thunderbird-site.appspot.com",
-  messagingSenderId: "303025008769",
-  appId: "1:303025008769:web:5510f6f6ad60594c7c1d80",
-  measurementId: "G-9HPJZBMX8F",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase

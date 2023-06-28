@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:5.59.2"],\
             ["@vitejs/plugin-react-swc", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:3.3.0"],\
             ["autoprefixer", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:10.4.14"],\
+            ["dotenv", "npm:16.3.1"],\
             ["eslint", "npm:8.39.0"],\
             ["eslint-config-prettier", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:8.8.0"],\
             ["eslint-config-standard-with-typescript", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:23.0.0"],\
@@ -2941,6 +2942,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["doctrine", "npm:3.0.0"],\
             ["esutils", "npm:2.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dotenv", [\
+        ["npm:16.3.1", {\
+          "packageLocation": "./.yarn/cache/dotenv-npm-16.3.1-e6d380a398-15d75e7279.zip/node_modules/dotenv/",\
+          "packageDependencies": [\
+            ["dotenv", "npm:16.3.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6170,6 +6180,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:5.59.2"],\
             ["@vitejs/plugin-react-swc", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:3.3.0"],\
             ["autoprefixer", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:10.4.14"],\
+            ["dotenv", "npm:16.3.1"],\
             ["eslint", "npm:8.39.0"],\
             ["eslint-config-prettier", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:8.8.0"],\
             ["eslint-config-standard-with-typescript", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:23.0.0"],\

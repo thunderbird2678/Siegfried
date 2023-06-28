@@ -3,7 +3,7 @@ import ImageGallery from "./components/ImageGallery";
 
 function App() {
   return (
-    <div className="w-screen bg-slate-200">
+    <div className="w-screen px-8 bg-slate-200">
       <ImageGallery />
     </div>
   );

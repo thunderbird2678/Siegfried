@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { cloneDeep } from "lodash";
 import { useParams } from "react-router-dom";
-import { getDownloadURL, getStorage, listAll, ref } from "firebase/storage";
+import classNames from "classnames";
+
+import {
+  getDownloadURL,
+  getStorage,
+  listAll,
+  ref,
+  StorageReference,
+} from "firebase/storage";
 import { FIREBASE_APP } from "../firebase";
 
 interface Image {
@@ -16,10 +24,12 @@ interface Column {
 
 const ImageGallery: React.FC = () => {
   const { bucket } = useParams();
-  const [images, setImages] = useState<Map<string, Image>>(new Map());
+  // const [images, setImages] = useState<Map<string, Image>>(new Map());
+  const [bucketIndex, setBucketIndex] = useState<number>(0);
+  const [imageRefs, setImageRefs] = useState<StorageReference[]>([]);
 
   const [fetchLoading, setFetchLoading] = useState<boolean>(true);
-  const [renderLoading, setRenderLoading] = useState<boolean>(true);
+  const [renderLoading, setRenderLoading] = useState<boolean>(false);
 
   const [columns, setColumns] = useState<Column[]>([
     { height: 0, images: [] },
@@ -27,37 +37,30 @@ const ImageGallery: React.FC = () => {
     { height: 0, images: [] },
   ]);
 
-  const storageFull = getStorage(FIREBASE_APP, bucket);
+  // const storageFull = getStorage(FIREBASE_APP, bucket);
   const storageThumbs = getStorage(FIREBASE_APP, `${bucket}_thumbs`);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const tempImages: Map<string, Image> = new Map();
+        // const tempImages: Map<string, Image> = new Map();
 
         // Fetch full images
-        const fullImageRefs = await listAll(ref(storageFull, "/"));
-        await Promise.all(
-          fullImageRefs.items.map(async (itemRef) => {
-            const url = await getDownloadURL(itemRef);
-            tempImages.set(itemRef.name, { fullUrl: url });
-          })
-        );
+        // const fullImageRefs = await listAll(ref(storageFull, "/"));
+        // await Promise.all(
+        //   fullImageRefs.items.map(async (itemRef) => {
+        //     const url = await getDownloadURL(itemRef);
+        //     tempImages.set(itemRef.name, { fullUrl: url });
+        //   })
+        // );
 
         // Fetch thumbnail images
         const thumbnailImageRefs = await listAll(ref(storageThumbs, "/"));
-        await Promise.all(
-          thumbnailImageRefs.items.map(async (itemRef) => {
-            const url = await getDownloadURL(itemRef);
-            const existingImage = tempImages.get(itemRef.name);
-            tempImages.set(itemRef.name, {
-              fullUrl: existingImage?.fullUrl ?? "",
-              thumbnailUrl: url,
-            });
-          })
+        const refs = thumbnailImageRefs.items.sort(
+          (a: StorageReference, b: StorageReference) =>
+            a.name > b.name ? 1 : -1
         );
-
-        setImages(tempImages);
+        setImageRefs(refs);
       } catch (error) {
         console.error(error);
       } finally {
@@ -66,54 +69,71 @@ const ImageGallery: React.FC = () => {
     };
 
     fetchImages();
-  }, [bucket, storageFull, storageThumbs]);
+  }, []);
 
   useEffect(() => {
     if (!fetchLoading) {
-      generateColumns();
+      pushImages();
     }
   }, [fetchLoading]);
 
-  const generateColumns = async () => {
-    const sortedImages = Array.from(images.keys()).sort();
-    // console.log("sortedImages: ", sortedImages);
+  const pushImages = async () => {
     const tempColumns = cloneDeep(columns);
-    let index = 0;
-    for (let key of sortedImages) {
-      // sortedImages.forEach((key, index) => {
-      console.log("key: ", key);
+    let tempBucketIndex = bucketIndex;
+    for (let ref of imageRefs) {
+      tempBucketIndex += 1;
+      const url = await getDownloadURL(ref);
       const image = new Image();
-      const imageElement = images.get(key);
-      const src = imageElement?.thumbnailUrl || "";
-      image.src = src;
-      // image.onload = async () => {
+      image.src = url;
       await image.decode();
-      const minHeightColumn = tempColumns.findIndex((col) => {
+      const minHeightColumn = tempColumns.findIndex((col: Column) => {
         return (
-          col.height === Math.min(...tempColumns.map((column) => column.height))
+          col.height ===
+          Math.min(...tempColumns.map((col: Column) => col.height))
         );
       });
-      tempColumns[minHeightColumn].height += image.naturalHeight + 96;
+      tempColumns[minHeightColumn].height += image.naturalHeight;
       tempColumns[minHeightColumn].images.push(
-        <div key={key} className="mb-4 p-4 bg-white max-w-[500px]">
-          {<img src={imageElement?.thumbnailUrl} alt="" />}
+        <div key={ref.name} className={classNames("mb-2 max-w-[500px]")}>
+          {
+            <img
+              className={
+                tempBucketIndex === imageRefs.length - 1
+                  ? "observer"
+                  : undefined
+              }
+              src={url}
+              alt=""
+            />
+          }
         </div>
       );
-      console.log(
-        `added image ${imageElement?.thumbnailUrl} to column ${
-          minHeightColumn + 1
-        } which now has height ${tempColumns[minHeightColumn].height}`
-      );
-      index += 1;
-      if (index === sortedImages.length - 1) {
+      if (tempBucketIndex === imageRefs.length - 1) {
         setColumns(tempColumns);
         setRenderLoading(false);
       }
-      // };
     }
+    setBucketIndex(tempBucketIndex);
   };
 
   const columnStyle = "flex mx-2 flex-col";
+
+  let options = {
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
+
+  let callback = (entries, observer) => {
+    entries.forEach((entry) => {
+      console.log("observer hit: ", entry);
+    });
+  };
+
+  let observer = new IntersectionObserver(callback, options);
+  let target = document.querySelector("#observer");
+  if (target) {
+    observer.observe(target);
+  }
 
   return !renderLoading ? (
     <div className="flex py-8 justify-center">

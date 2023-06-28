@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:5.59.2"],\
             ["@vitejs/plugin-react-swc", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:3.3.0"],\
             ["autoprefixer", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:10.4.14"],\
+            ["classnames", "npm:2.3.2"],\
             ["dotenv", "npm:16.3.1"],\
             ["eslint", "npm:8.39.0"],\
             ["eslint-config-prettier", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:8.8.0"],\
@@ -50,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["localforage", "npm:1.10.0"],\
             ["lodash", "npm:4.17.21"],\
             ["match-sorter", "npm:6.3.1"],\
+            ["object-path", "npm:0.11.8"],\
             ["postcss", "npm:8.4.23"],\
             ["prettier", "npm:2.8.8"],\
             ["react", "npm:18.2.0"],\
@@ -2692,6 +2694,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["classnames", [\
+        ["npm:2.3.2", {\
+          "packageLocation": "./.yarn/cache/classnames-npm-2.3.2-d2fdae468d-2c62199789.zip/node_modules/classnames/",\
+          "packageDependencies": [\
+            ["classnames", "npm:2.3.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["clean-stack", [\
         ["npm:2.2.0", {\
           "packageLocation": "./.yarn/cache/clean-stack-npm-2.2.0-a8ce435a5c-2ac8cd2b2f.zip/node_modules/clean-stack/",\
@@ -5321,6 +5332,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["object-path", [\
+        ["npm:0.11.8", {\
+          "packageLocation": "./.yarn/cache/object-path-npm-0.11.8-f23d497fab-684ccf0fb6.zip/node_modules/object-path/",\
+          "packageDependencies": [\
+            ["object-path", "npm:0.11.8"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:0.6.0", {\
           "packageLocation": "./.yarn/cache/object-path-npm-0.6.0-1c7b0b9b17-e9d7a901bc.zip/node_modules/object-path/",\
           "packageDependencies": [\
@@ -6180,6 +6198,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:5.59.2"],\
             ["@vitejs/plugin-react-swc", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:3.3.0"],\
             ["autoprefixer", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:10.4.14"],\
+            ["classnames", "npm:2.3.2"],\
             ["dotenv", "npm:16.3.1"],\
             ["eslint", "npm:8.39.0"],\
             ["eslint-config-prettier", "virtual:df8aa90182d9b3972d8e98e5cf7ed542023f32545891ede33ed557d2c38e8246057bac70a45e9ae1acaf87af7d6ae4f3d2bc15c9dd6e963782c72dbe18451b3c#npm:8.8.0"],\
@@ -6193,6 +6212,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["localforage", "npm:1.10.0"],\
             ["lodash", "npm:4.17.21"],\
             ["match-sorter", "npm:6.3.1"],\
+            ["object-path", "npm:0.11.8"],\
             ["postcss", "npm:8.4.23"],\
             ["prettier", "npm:2.8.8"],\
             ["react", "npm:18.2.0"],\
